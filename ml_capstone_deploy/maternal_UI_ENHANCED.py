@@ -1,6 +1,6 @@
 # ─────────────────────────────────────────────────────────────────────────────
-# maternal_UI_ATTRACTIVE.py — Maternal Health Risk Predictor (Attractive UI)
-# Run with: streamlit run maternal_UI_ATTRACTIVE.py
+# maternal_UI_FINAL.py — Maternal Health Risk Predictor (Final UI)
+# Run with: streamlit run maternal_UI_FINAL.py
 # ─────────────────────────────────────────────────────────────────────────────
 
 import joblib
@@ -13,7 +13,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# Custom CSS for attractive styling (keeping same structure)
+# Custom CSS for attractive styling
 st.markdown("""
     <style>
     /* Page background */
@@ -62,16 +62,6 @@ st.markdown("""
         box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
     }
     
-    /* Card style for content */
-    .card {
-        background: white;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        border-left: 5px solid #667eea;
-        margin: 15px 0;
-    }
-    
     /* Metric card */
     .metric-card {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -114,16 +104,46 @@ st.markdown("""
         color: #333;
     }
     
+    /* Recommendation card styling */
+    .recommendation-card {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+        padding: 20px;
+        border-radius: 12px;
+        border-left: 5px solid #667eea;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        margin: 15px 0;
+    }
+    
+    /* Patient summary section styling */
+    .summary-section {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+        padding: 25px;
+        border-radius: 12px;
+        border-left: 5px solid #667eea;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        margin: 15px 0;
+    }
+    
     /* Table styling */
     table {
         background: white;
         border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
     
     table th {
         background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
         color: white;
+        padding: 12px;
+        font-weight: bold;
+    }
+    
+    table td {
+        padding: 10px 12px;
+        border-bottom: 1px solid #e8e8e8;
+    }
+    
+    table tr:last-child td {
+        border-bottom: none;
     }
     
     /* Input fields */
@@ -149,7 +169,7 @@ def load_model():
 model, encoder = load_model()
 
 # ─────────────────────────────────────────────────────────────────────────────
-# UI ENHANCEMENT 1: ADD SIDEBAR WITH ABOUT & MODEL INFO (SAME STRUCTURE)
+# SIDEBAR
 # ─────────────────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown("## 📋 About This App")
@@ -177,7 +197,7 @@ with st.sidebar:
         st.markdown("[Documentation](https://github.com/adupatil161/maternal-health-app)")
 
 # ─────────────────────────────────────────────────────────────────────────────
-# UI ENHANCEMENT 2: ADD "HOW THIS WORKS" EXPANDABLE SECTION (SAME STRUCTURE)
+# HEADER
 # ─────────────────────────────────────────────────────────────────────────────
 st.title("🏥 Maternal Health Risk Predictor")
 st.markdown("Enter the patient's vital signs and click **Predict Risk Level**.")
@@ -339,50 +359,43 @@ if predict_clicked:
     st.markdown("### 🏥 Clinical Recommendation")
     if risk_label == "high risk":
         st.markdown("""
-        <div class="card" style="border-left-color: #eb3349;">
+        <div class="recommendation-card">
             <p><b>Urgent: Refer to specialist, monitor BP/BS continuously, check for preeclampsia.</b></p>
         </div>
         """, unsafe_allow_html=True)
     elif risk_label == "mid risk":
         st.markdown("""
-        <div class="card" style="border-left-color: #fa709a;">
+        <div class="recommendation-card">
             <p><b>Schedule follow-up in 1-2 weeks, daily home BP monitoring, dietary guidance.</b></p>
         </div>
         """, unsafe_allow_html=True)
     else:
         st.markdown("""
-        <div class="card" style="border-left-color: #84fab0;">
+        <div class="recommendation-card">
             <p><b>Routine care: Continue regular prenatal check-ups and healthy lifestyle.</b></p>
         </div>
         """, unsafe_allow_html=True)
 
     st.markdown("### 📋 Patient Summary")
-    s1, s2 = st.columns(2)
-    with s1:
-        st.markdown(f"""
-        <div class="card">
-        <h4>Vital Signs</h4>
-        
+    
+    # Left column
+    st.markdown("""
+    <div class="summary-section">
+        <h4 style="color: #667eea; margin-top: 0;">Vital Signs</h4>
+    """, unsafe_allow_html=True)
+    
+    st.markdown(f"""
 | Vital | Value | Normal Range |
 |---|---|---|
 | Age | {age} years | 18-40 |
 | Systolic BP | {sys_bp} mmHg | 90-120 |
 | Diastolic BP | {dia_bp} mmHg | 60-80 |
-        </div>
-        """, unsafe_allow_html=True)
-    
-    with s2:
-        st.markdown(f"""
-        <div class="card">
-        <h4>Biochemical Parameters</h4>
-        
-| Vital | Value | Normal Range |
-|---|---|---|
 | Blood Sugar | {bs:.1f} mg/dL | 70-100 |
 | Body Temp | {temp:.1f} °F | 97-99 |
 | Heart Rate | {heart_rate} bpm | 60-100 |
-        </div>
-        """, unsafe_allow_html=True)
+    """)
+    
+    st.markdown("</div>", unsafe_allow_html=True)
 
 st.markdown("---")
 st.markdown("""
