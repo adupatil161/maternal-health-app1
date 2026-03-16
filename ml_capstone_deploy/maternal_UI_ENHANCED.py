@@ -230,7 +230,7 @@ with st.sidebar:
 # ─────────────────────────────────────────────────────────────────────────────
 # HEADER
 # ─────────────────────────────────────────────────────────────────────────────
-st.title("🏥 Maternal Health Risk Predictor")
+st.title(" Maternal Health Risk Predictor")
 st.markdown("Enter the patient's vital signs and click **Predict Risk Level**.")
 
 with st.expander("ℹ️ How This Works"):
@@ -259,16 +259,16 @@ st.subheader("📋 Enter Patient Information")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    age    = st.number_input("👤 Age (years)",                     min_value=10,  max_value=70,  value=30)
-    sys_bp = st.number_input("❤️ Systolic BP (mmHg)", min_value=50,  max_value=200, value=120)
+    age    = st.number_input(" Age (years)",                     min_value=10,  max_value=70,  value=30)
+    sys_bp = st.number_input( Systolic BP (mmHg)", min_value=50,  max_value=200, value=120)
 
 with col2:
-    dia_bp = st.number_input("💓 Diastolic BP (mmHg)", min_value=30,  max_value=150, value=80)
-    bs     = st.number_input("🩸 Blood Sugar (mg/dL)",            min_value=1.0, max_value=30.0, value=7.0, step=0.1)
+    dia_bp = st.number_input(" Diastolic BP (mmHg)", min_value=30,  max_value=150, value=80)
+    bs     = st.number_input(" Blood Sugar (mg/dL)",            min_value=1.0, max_value=30.0, value=7.0, step=0.1)
 
 with col3:
-    temp       = st.number_input("🌡️ Body Temperature (°F)",  min_value=95.0, max_value=106.0, value=98.6, step=0.1)
-    heart_rate = st.number_input("💗 Heart Rate (bpm)",      min_value=40,   max_value=150,   value=76)
+    temp       = st.number_input(" Body Temperature (°F)",  min_value=95.0, max_value=106.0, value=98.6, step=0.1)
+    heart_rate = st.number_input(" Heart Rate (bpm)",      min_value=40,   max_value=150,   value=76)
 
 # Display Input Summary
 st.markdown("### 📊 Input Summary:")
