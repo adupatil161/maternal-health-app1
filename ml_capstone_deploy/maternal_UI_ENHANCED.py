@@ -260,7 +260,7 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     age    = st.number_input(" Age (years)",                     min_value=10,  max_value=70,  value=30)
-    sys_bp = st.number_input( Systolic BP (mmHg)", min_value=50,  max_value=200, value=120)
+    sys_bp = st.number_input(" Systolic BP (mmHg)", min_value=50,  max_value=200, value=120)
 
 with col2:
     dia_bp = st.number_input(" Diastolic BP (mmHg)", min_value=30,  max_value=150, value=80)
