@@ -15,8 +15,8 @@ st.set_page_config(
 
 @st.cache_resource
 def load_model():
-    model   = joblib.load("trained_models/maternal_risk_model.pkl")
-    encoder = joblib.load("trained_models/label_encoder.pkl")
+    model   = joblib.load("ml_capstone_deploy/trained_models/maternal_risk_model.pkl")
+    encoder = joblib.load("ml_capstone_deploy/trained_models/label_encoder.pkl")
     return model, encoder
 
 model, encoder = load_model()
